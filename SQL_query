@@ -1,0 +1,71 @@
+SELECT * FROM 
+
+(SELECT
+  date_date,
+  service,
+  gare_depart AS gare_ville,
+  case WHEN 1=1 THEN "True" end as is_depart,
+  gare_depart,
+  gare_arrivee,
+  CONCAT(gare_depart, ' --> ', gare_arrivee) as trajet,
+  duree_moyenne,
+  average_total_dept,
+  average_total_late_dept,
+  average_total_late_arrival,
+  nb_train_prevu,
+  nb_annulation,
+  nb_train_depart_retard,
+  retard_moyen_dept,
+  retard_moyen_tous_dept,
+  nb_train_retard_arrivee,
+  retard_moyen_arrival,
+  retard_moyen_tous_arrival,
+  nb_train_retard_sup_15,
+  avg_retard_trains,
+  nb_train_retard_sup_30,
+  nb_train_retard_sup_60,
+  prob_percent_cause_ext,
+  prob_percent_infra,
+  prob_percent_gestion_trafic,
+  prob_percent_materiel_roulant,
+  prob_percent_gestion_gare,
+  prob_percent_voyageurs
+FROM
+  `starlit-hangar-411310.SNCF.Clean_SNCF`
+
+Union all
+
+SELECT
+  date_date,
+  service,
+  gare_arrivee AS gare_ville,
+  case WHEN 1=1 THEN "False" end as is_depart,
+  gare_depart,
+  gare_arrivee,
+  CONCAT(gare_depart, ' --> ', gare_arrivee) as trajet,
+  duree_moyenne,
+  average_total_dept,
+  average_total_late_dept,
+  average_total_late_arrival,
+  nb_train_prevu,
+  nb_annulation,
+  nb_train_depart_retard,
+  retard_moyen_dept,
+  retard_moyen_tous_dept,
+  nb_train_retard_arrivee,
+  retard_moyen_arrival,
+  retard_moyen_tous_arrival,
+  nb_train_retard_sup_15,
+  avg_retard_trains,
+  nb_train_retard_sup_30,
+  nb_train_retard_sup_60,
+  prob_percent_cause_ext,
+  prob_percent_infra,
+  prob_percent_gestion_trafic,
+  prob_percent_materiel_roulant,
+  prob_percent_gestion_gare,
+  prob_percent_voyageurs
+FROM
+  `starlit-hangar-411310.SNCF.Clean_SNCF`)
+
+ORDER BY gare_depart, date_date
